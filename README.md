@@ -1,6 +1,6 @@
 # Operation Center (Bash Project)
 
-Et læringsprosjekt i **Bash scripting** som simulerer et *ROOT administrator kontrollsenter* med innlogging, menyer og moduler for vanlige sysadmin-operasjoner.  
+Et prosjekt i **Bash scripting** som simulerer et *ROOT administrator kontrollsenter* med innlogging, menyer og moduler for vanlige sysadmin-operasjoner.  
 
 Prosjektet er bygget opp modulært: hovedscriptet (`root-operation-center`)
 
