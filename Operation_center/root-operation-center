@@ -1,0 +1,258 @@
+#!/bin/bash
+#2FA loggin before entering ROOT ADMIN
+
+clear
+echo "**************************************************************"
+echo "=============================="
+echo "Entering ROOT Operation Center"
+echo "=============================="
+echo "**************************************************************"
+
+
+# Check if the script is run as root
+if [ "$(id -u)" != "0" ]; then
+        clear
+        echo
+        echo "!========================================================!"
+        echo "- This operatiom must be run as root privligies. Exiting -"
+        echo "!========================================================!"
+        loading="./.loading"
+        $loading
+        echo
+        sleep 1
+        echo "!===== EXITING OPERATION =====!"
+        sleep 1
+        exit
+fi
+
+
+
+sleep 0.2
+echo "."
+sleep 0.3
+echo ".."
+sleep 0.3
+loading="./.loading"
+$loading
+clear
+
+
+while true; do
+	clear
+	echo "**************************************************************"
+	echo "========================"
+	echo "*ROOT* Operation Center"
+	echo "========================"
+	echo " "
+	echo "Welcome to C.A.A-Server"
+	echo
+	echo "Pleas enter operation"
+	echo " "
+	echo "========================"
+	echo "**************************************************************"
+	echo " "
+	echo " "
+
+	sleep 0.5
+
+	echo "**************************************************************"
+	echo "================================"
+	echo "- ROOT administrator logg in -"
+	echo "================================"
+	echo "- Add server user ------------ 1"
+	echo "- Delete server user --------- 2"
+	echo
+	echo "- EDIT ROOT ADMIN USER ------- 3"
+	echo "- Check if ROOT ADMIN Valid -- 4"
+	echo
+	echo "- Make backup of OP-Center --- 5"
+	echo
+	echo "- Check users ---------------- 6"
+	echo
+	echo "- Check disk space ussage ---- 7"
+	echo
+	echo "- GREP a user ---------------- 8"
+	echo
+	echo "- Display user own info ------ 9"
+	echo
+	echo "- NMAP TCP SYN scanning ----- 10"
+	echo
+	echo "- Display warning ----------- 11"
+	echo
+	echo "- Exit ROOT ------------------ X"
+	echo "================================"
+	echo "**************************************************************"
+	echo
+	echo
+	echo
+	read -p "Enter operation so process --> " oper
+
+
+	case "$oper" in
+
+
+
+#ADD USER
+1)
+clear
+echo "==============="
+echo "- Adding user -"
+echo "==============="
+$loading
+addnewuser="./.add-new-user"
+$addnewuser
+sleep 2
+;;
+
+
+#DELETE USER
+2)
+clear
+echo "==============="
+echo "- Delete user -"
+echo "==============="
+$loading
+deleteuser="./.delete-user"
+$deleteuser
+sleep 2
+;;
+
+
+#ADD ROOT ADMIN USER
+3)
+clear
+echo "=============================="
+echo "- EDIT ROOT ADMIN user -"
+echo "=============================="
+$loading
+addrootadmin="./.add_root"
+$addrootadmin
+sleep 2
+;;
+
+
+#CHECK IF ROOT ADMIN VALID
+4)
+clear 
+echo "============================="
+echo "- Check if ROOT ADMIN valid -"
+echo "============================="
+$loading
+checkrootvalid="./.verify_root_check"
+$checkrootvalid
+sleep 2
+
+;;
+
+
+#MAKE OP-CENTER BACKUP
+5)
+echo "============================"
+echo "- Make backup of OP-Center -"
+echo "============================"
+$loading
+opback="./.op-backup"
+$opback
+sleep 2
+;;
+
+
+#CHECK USERS
+6)
+clear
+echo "============================="
+echo "- Check users in the server -"
+echo "============================="
+$loading
+echo 
+tabus="./.table-users"
+$tabus
+;;
+
+
+#CHECK DISK SPACE
+7)
+clear
+echo "======================="
+echo "- checking disk space -"
+echo "======================="
+$loading
+echo
+disks="./.disk-space"
+$disks
+;;
+
+
+#GREP USER
+8)
+clear
+echo "======================="
+echo "- Grep user from here -"
+echo "======================="
+$loading
+echo
+grpus="./.grep-user"
+$grpus
+;;
+
+
+#user info
+9)
+clear
+echo "============================"
+echo "- Displaying user own info -"
+echo "============================"
+echo "Remember 'q' to quit "
+$loading
+echo
+owninfo="./.owninfo"
+$owninfo
+;;
+
+
+#NMAP TCP 
+10)
+clear
+echo "================================="
+echo "- Displaying NMAP TCP SYN scann -"
+echo "================================="
+$loading
+echo 
+maptcp="./.maptcp"
+$maptcp
+;;
+
+
+#DISPLAY WARNING
+11)
+clear
+echo "====================================="
+echo "- Displaying warning on user screen -"
+echo "====================================="
+$loading
+echo 
+zen="./.zenityw"
+$zen
+;;
+
+
+#EXITING ROOT OPERATION CENTER
+x)
+clear
+echo "**************************************************************"
+echo "==========================================="
+echo "- Exiting the ROOT ADMIN operation center -"
+echo
+echo "- Entering operation center  - "
+echo "==========================================="
+echo "**************************************************************"
+loading="./.loading"
+$loading
+echo "EXITING ROOT ADMIN CENTER"
+sleep 1
+clear
+tree
+break
+		;;
+	esac
+done

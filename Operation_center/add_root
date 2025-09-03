@@ -1,0 +1,37 @@
+#!/bin/bash
+
+
+# Check if the script is run as root
+if [ "$(id -u)" != "0" ]; then
+        clear
+        echo
+        echo "!========================================================!"
+        echo "- This operatiom must be run as root privligies. Exiting -"
+        echo "!========================================================!"
+        loading="./.loading"
+        $loading
+        echo
+        sleep 1
+        echo "!===== EXITING OPERATION =====!"
+        sleep 1
+        exit
+fi
+
+
+#username and password
+read -p "Enter new admin username: " username
+read -s -p "Enter password for $username: " password
+echo
+
+
+#Export to the txt locked file for ROOT user admins
+export RootAdminUser="$username"
+export Password="$password"
+
+
+#saving
+echo "RootAdminUser: $username" > .admin_credentials.txt
+echo "Password: $password" >> .admin_credentials.txt
+
+echo "Root admin user created and saved"
+sleep 2

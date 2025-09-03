@@ -1,0 +1,48 @@
+#!/bin/bash
+ 
+# Check if the script is run as root
+if [ "$(id -u)" != "0" ]; then
+        clear
+        echo
+        echo "!========================================================!"
+        echo "- This operatiom must be run as root privligies. Exiting -"
+        echo "!========================================================!"
+        loading="./.loading"
+        $loading
+        echo
+        sleep 1
+        echo "!===== EXITING OPERATION =====!"
+        sleep 1
+        exit
+fi
+
+
+#display the user table
+display_users() {
+    #the table header
+    echo "| Username |         Email         |"
+    echo "|----------|-----------------------|"
+
+    #Read the file
+    while IFS=, read -r username email; do
+        echo "| $username | $email |"
+    done < ".user_data.txt"
+}
+
+display_users
+
+#exit
+    read -p "Do you want to exit? (y/n): " choice
+
+    if [ "$choice" == "yes" ]; then
+        echo "Exiting the script. Goodbye!"
+        sleep 1
+	exit 0
+    else
+        echo "Continuing script..."
+	sleep 1
+    fi
+else
+    echo "Error: File '.user_data.txt' not found."
+    sleep 1
+fi

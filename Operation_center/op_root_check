@@ -1,0 +1,33 @@
+#!/bin/bash
+
+
+# Check if the script is run as root
+if [ "$(id -u)" != "0" ]; then
+	clear
+	echo
+	echo "!========================================================!"
+	echo "- This operatiom must be run as root privligies. Exiting -"
+	echo "!========================================================!"
+	loading="./.loading"
+	$loading
+	echo
+	sleep 1
+	echo "!===== EXITING OPERATION =====!"
+	sleep 1
+	exit
+fi
+
+
+# Run the script as root
+clear
+echo 
+echo "!=============================!"
+echo "- You have ROOT priviliges! -"
+echo "- Enetring ROOT ADMIN center -"
+echo "==============================="
+echo
+sleep 0.5
+loading="./.loading"
+$loading
+rootadmin="./.root-operation-center"
+$rootadmin

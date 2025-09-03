@@ -1,0 +1,58 @@
+#!/bin/bash
+loading="./.loading"
+
+# Check if the script is run as root
+if [ "$(id -u)" != "0" ]; then
+        clear
+        echo
+        echo "!========================================================!"
+        echo "- This operatiom must be run as root privligies. Exiting -"
+        echo "!========================================================!"
+        loading="./.loading"
+        $loading
+        echo
+        sleep 1
+        echo "!===== EXITING OPERATION =====!"
+        sleep 1
+        exit
+fi
+
+#user for input
+$loading
+read -p "Enter username to delete: " username
+
+#if the user exists
+if id "$username" &>/dev/null; then
+    user_home=$(eval echo ~$username)
+
+    #deleting
+    read -p "Are you sure you want to delete user $username and folders? (y/n): " confirm
+    if [ "$confirm" == "y" ]; then
+        userdel -r "$username"
+	rm -rf "$user_home"
+	sed -i "/^$username,/d" .user_data.txt
+	echo
+	echo "!================= MESSAGES =======================!"
+	echo
+	echo "DELETING $username"
+	echo
+        echo "User $username and its folders deleted successfully."
+	echo
+	echo "!==================================================!"
+	sleep 3
+    else
+	echo
+	echo "!======IMPORTANT========!"
+        echo "Deletion canceled."
+	echo "!=======================!"
+	$loading
+	sleep 0.3
+    fi
+else
+	echo
+	echo "!=======IMPORTANT!============"
+	echo "User $username does not exist."
+	echo "!============================!"
+	$loading
+	sleep 0.3
+fi

@@ -1,0 +1,51 @@
+#!/bin/bash
+
+
+# Check if the script is run as root
+if [ "$(id -u)" != "0" ]; then
+        clear
+        echo
+        echo "!========================================================!"
+        echo "- This operatiom must be run as root privligies. Exiting -"
+        echo "!========================================================!"
+        loading="./.loading"
+        $loading
+        echo
+        sleep 1
+        echo "!===== EXITING OPERATION =====!"
+        sleep 1
+        exit
+fi
+
+
+
+loading="./.loading"
+
+
+# email mapping
+USER_DATA_FILE=".user_data.txt"
+
+
+# user for input
+echo
+read -p "Enter email address to search for username: " search_email
+echo
+echo "!========================================!"
+
+
+# Search for username with email
+username=$(grep -i "^.*,$search_email" "$USER_DATA_FILE" | cut -d ',' -f 1)
+
+if [ -n "$username" ]; then
+	loading="./.loading"
+	$loading 
+	echo
+   	echo "Username with the email '$search_email' is: $username"
+	sleep 3
+else
+	loading="./.loading"
+	$loading
+	echo
+   	echo "No username found for the email '$search_email'."
+	sleep 3
+fi

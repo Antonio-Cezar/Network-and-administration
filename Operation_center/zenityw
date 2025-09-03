@@ -1,0 +1,31 @@
+#!/bin/bash
+
+
+# Check if the script is run as root
+if [ "$(id -u)" != "0" ]; then
+        clear
+        echo
+        echo "!========================================================!"
+        echo "- This operatiom must be run as root privligies. Exiting -"
+        echo "!========================================================!"
+        loading="./.loading"
+        $loading
+        echo
+        sleep 1
+        echo "!===== EXITING OPERATION =====!"
+        sleep 1
+        exit
+fi
+
+
+# input using Zenity
+chosentxt=$(zenity --entry --text="Enter the text:")
+
+
+# user clicked OK or Cancel
+if [ $? -eq 0 ]; then
+	zenity --warning --text="== $chosentxt =="
+else
+    	echo "User canceled the input."
+    	sleep 2
+fi

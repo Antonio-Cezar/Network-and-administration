@@ -1,0 +1,3 @@
+cicl12,cezar@gmail.com
+sasle,sindre@gmail.com
+adrian,adrian@gmail.com

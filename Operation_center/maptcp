@@ -1,0 +1,25 @@
+#!/bin/bash
+
+
+# Check if the script is run as root
+if [ "$(id -u)" != "0" ]; then
+        clear
+        echo
+        echo "!========================================================!"
+        echo "- This operatiom must be run as root privligies. Exiting -"
+        echo "!========================================================!"
+        loading="./.loading"
+        $loading
+        echo
+        sleep 1
+        echo "!===== EXITING OPERATION =====!"
+        sleep 1
+        exit
+fi
+
+# for the target IP address
+read -p "Enter the target IP address: " target_ip
+
+# TCP SYN scan
+nmap -sS "$target_ip"
+sleep 2

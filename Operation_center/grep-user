@@ -1,0 +1,42 @@
+#!/bin/bash
+
+
+# Check if the script is run as root
+if [ "$(id -u)" != "0" ]; then
+        clear
+        echo 
+        echo "!========================================================!"
+        echo "- This operatiom must be run as root privligies. Exiting -"
+        echo "!========================================================!"
+        loading="./.loading"
+        $loading
+        echo 
+        sleep 1
+        echo "!===== EXITING OPERATION =====!"
+        sleep 1
+        exit
+fi
+
+
+#file
+user_data_file=".user_data.txt"
+
+cat .user_data.txt
+
+#user for input
+read -p "Enter username to search: " inp_user
+
+
+#grep search for the user
+result=$(grep "^$inp_user:" "$user_data_file")
+
+
+#if the user was found
+if [ -n "$result" ]; then
+    echo "User found:"
+    echo "$result"
+    sleep 2
+else
+    echo "User not found."
+    sleep 1
+fi

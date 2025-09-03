@@ -1,0 +1,41 @@
+#!/bin/bash
+
+
+# Check if the script is run as root
+if [ "$(id -u)" != "0" ]; then
+        clear
+        echo
+        echo "!========================================================!"
+        echo "- This operatiom must be run as root privligies. Exiting -"
+        echo "!========================================================!"
+        loading="./.loading"
+        $loading
+        echo
+        sleep 1
+        echo "!===== EXITING OPERATION =====!"
+        sleep 1
+        exit
+fi
+
+
+
+while true; do
+    #input user
+    read -p "Enter the username to monitor: " username
+
+    top -u "$username"
+
+    #wants to quit
+    read -p "Do you want to quit? (y/n): " choice
+
+    if [ "$choice" == "y" ]; then
+        echo "Exiting..."
+	sleep 2
+        break
+    fi
+done
+
+
+
+
+

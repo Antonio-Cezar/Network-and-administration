@@ -1,0 +1,142 @@
+#!/bin/bash
+
+sleep 0.3
+echo
+echo "================"
+echo "Checking access!"
+echo "================"
+loading="./.loading"
+$loading
+
+# Check if the script is run as root
+if [ "$(id -u)" != "0" ]; then
+        clear
+        echo
+        echo "!========================================================!"
+        echo "- This operatiom must be run as root privligies. Exiting -"
+        echo "!========================================================!"
+        loading="./.loading"
+        $loading
+        echo
+        sleep 1
+        echo "!===== EXITING OPERATION =====!"
+        sleep 1
+        exit
+fi
+
+# Run the script as root
+echo 
+echo "!===================================!"
+echo "- You have ROOT priviliges! -"
+echo "- Enetring Operation-Center2 center -"
+echo "====================================="
+echo
+loading="./.loading"
+$loading
+
+
+clear
+echo "========================="
+echo "Entering Operation Center"
+echo "========================="
+
+loading="./.loading"
+$loading
+echo "Entering"
+sleep 0.5
+clear
+
+while true; do
+	clear
+	echo "========================"
+	echo "Operation Center"
+	echo "========================"
+	echo " "
+	echo "Welcome to C.A.A-Server"
+	echo
+	echo "Pleas enter operation"
+	echo " "
+	echo "========================"
+	echo " "
+	echo " "
+
+	sleep 0.5
+
+	echo "================================="
+	echo "- Check mail for username ----- 1"
+	echo "- change password for user ---- 2"
+	echo "- Enter ROOT ADMIN OP --------- 3"
+	echo "- Exit ------------------------ x"
+	echo "================================="
+	echo
+	echo
+	echo
+	read -p "Enter operation so process --> " ope
+
+
+	case "$ope" in
+
+
+#SEND USER NAME TO MAIL
+1)
+clear
+echo "=========================================="
+echo "- Check mail for user name on the server -"
+echo "=========================================="
+$loading
+
+shmail="./.search-email"
+$shmail
+;;
+
+
+#CHANGE PASSWOORD (Enter current and change)
+2)
+clear
+echo "==================="
+echo "- Change Password -"
+echo "==================="
+$loading
+
+chpw="./.ch-password"
+$chpw
+sleep 2
+;;
+
+
+#FOWORD TO ROOT ADMIN OPERATION CENTER (CHECKS IF USER IS ROOT FIRST TO EXECUTE)
+3)
+clear
+echo "=============================="
+echo "- ROOT administrator logg in -"
+echo "- Checking if user ROOT priv -"
+echo "=============================="
+sleep 0.3
+echo "."
+sleep 0.3
+echo ".."
+sleep 0.3
+$loading
+opvery="./.verify_root"
+$opvery
+sleep 1
+;;
+
+
+#EXITING OPERATION CENTER
+x)
+clear
+echo "================================"
+echo "- Exiting the operation center -"
+echo "================================"
+$loading
+echo "EXITING"
+sleep 1
+clear
+break
+		;;
+	esac
+done
+
+ls
+tree

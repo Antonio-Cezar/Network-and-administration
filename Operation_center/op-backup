@@ -1,0 +1,35 @@
+#!/bin/bash
+
+
+# Check if the script is run as root
+if [ "$(id -u)" != "0" ]; then
+        clear
+        echo
+        echo "!========================================================!"
+        echo "- This operatiom must be run as root privligies. Exiting -"
+        echo "!========================================================!"
+        loading="./.loading"
+        $loading
+        echo
+        sleep 1
+        echo "!===== EXITING OPERATION =====!"
+        sleep 1
+        exit
+fi
+
+
+
+source_directory="/home/anto/Downloads/user-add-script-t1"
+backup_loc="/home/anto/Downloads/BACKUP"
+
+
+#Create directory with the current date and time
+backup_folder="$backup_loc/OP-center_$(date +"%Y%m%d_%H%M%S")"
+mkdir -p "$backup_folder"
+
+
+#Copy the folder to the backup location
+cp -r "$source_directory" "$backup_folder"
+
+echo "Backup completed and stored in: $backup_folder"
+sleep 2

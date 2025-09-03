@@ -1,0 +1,63 @@
+#!/bin/bash
+loading="./loading"
+
+# Check if the script is run as root
+if [ "$(id -u)" != "0" ]; then
+        clear
+        echo
+        echo "!========================================================!"
+        echo "- This operatiom must be run as root privligies. Exiting -"
+        echo "!========================================================!"
+        loading="./.loading"
+        $loading
+        echo
+        sleep 1
+        echo "!===== EXITING OPERATION =====!"
+        sleep 1
+        exit
+fi
+
+#user for input
+echo 
+read -p "Enter username: " username
+echo
+read -p "Enter full name: " full_name
+echo
+read -p "Enter user folder name: " user_folder
+echo
+read -p "Enter password: " password
+echo
+read -p "Enter email: " email
+
+#Create user folder
+user_home="/home/$user_folder"
+mkdir -p "$user_home"
+
+#Create user with details
+useradd -m -d "$user_home" -c "$full_name" -s /bin/bash "$username"
+
+#Set password
+echo "$username:$password" | sudo chpasswd
+
+#Create folders for user's home directory
+mkdir -p "$user_home/Document"
+mkdir -p "$user_home/server_source"
+mkdir -p "$user_home/groupsharedfolder"
+
+echo "$username,$email" >> .user_data.txt
+
+#display user details
+$loading
+echo 
+echo "==============================="
+echo " NEW USER DETAIL"
+echo 
+echo "User created successfully!"
+echo "Username: $username"
+echo "Full Name: $full_name"
+echo "User Folder: $user_home"
+echo "Email: $email"
+echo
+echo "Additional folders created: Document, server_source, groupsharedfolder"
+echo "==============================="
+sleep 3

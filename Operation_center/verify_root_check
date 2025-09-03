@@ -1,0 +1,71 @@
+#!/bin/bash
+
+loading="./.loading"
+
+
+# Check if the script is run as root
+if [ "$(id -u)" != "0" ]; then
+        clear
+        echo
+        echo "!========================================================!"
+        echo "- This operatiom must be run as root privligies. Exiting -"
+        echo "!========================================================!"
+        loading="./.loading"
+        $loading
+        echo
+        sleep 1
+        echo "!===== EXITING OPERATION =====!"
+        sleep 1
+        exit
+fi
+
+
+
+# Read from file
+while IFS= read -r line; do
+  if [[ "$line" == "RootAdminUser: "* ]]; then
+    	RootAdminUser="${line#RootAdminUser: }"
+  elif [[ "$line" == "Password: "* ]]; then
+   	 Password="${line#Password: }"
+  fi
+done < .admin_credentials.txt
+
+
+
+# if variables are set
+if [[ -z "$RootAdminUser" || -z "$Password" ]]; then
+  	$loading
+	clear
+	echo "! ERROR !"
+	echo "Error: Invalid credentials file format."
+  	exit 1
+fi
+
+
+# for login
+$loading
+echo "====================="
+echo "Enter ROOT ADMIN info"
+echo
+read -p "Enter username: " entered_username
+read -s -p "Enter password for $entered_username: " entered_password
+echo
+
+
+# from the text file
+if [[ "$entered_username" == "$RootAdminUser" && "$entered_password" == "$Password" ]]; then
+  	echo
+	echo "======================="
+	echo "- THIS USER IS CORRECT & VALID."
+  	$loading
+	sleep 1
+  	$rootcenter
+
+else
+	echo
+	echo "! WARNING !"
+  	echo "Invalid credentials. Exiting..."
+	sleep 0.5
+  	$loading
+	exit 1
+fi
