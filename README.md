@@ -1,6 +1,3 @@
-# Network-and-administrationd
-
-
 # Operation Center (Bash Project)
 
 Et læringsprosjekt i **Bash scripting** som simulerer et *ROOT administrator kontrollsenter* med innlogging, menyer og moduler for vanlige sysadmin-operasjoner.  
