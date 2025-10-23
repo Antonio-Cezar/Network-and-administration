@@ -35,4 +35,4 @@ The project is built in a modular structure: the main script (`root-operation-ce
 ---
 
 ### Example
-![Demonstration of how it works](images/)
+![Demonstration of how it works](images/OperationCenterWorking.jpg)
