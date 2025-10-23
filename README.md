@@ -1,35 +1,35 @@
 # Operation Center (Bash Project)
 
-Et prosjekt i **Bash scripting** som simulerer et *ROOT administrator kontrollsenter* med innlogging, menyer og moduler for vanlige sysadmin-operasjoner.  
+A **Bash scripting** project that simulates a *ROOT administrator control center* with login, menus, and modules for common sysadmin operations.  
 
-Prosjektet er bygget opp modulært: hovedscriptet (`root-operation-center`)
-
----
-
-## 🚀 Funksjoner
-- **Root-sjekk**: Scriptet avslutter hvis det ikke kjøres som root (via `id -u`)  
-- **Innlogging**: Simulert admin-login med brukernavn og passord lagret i `admin_credentials.txt`
-- **Menybasert grensesnitt** (via `case`) med valg som:
-  - Legge til bruker  
-  - Slette bruker  
-  - Redigere root-admin bruker  
-  - Verifisere root-admin gyldighet  
-  - Backup av systemet  
-  - Vise brukere  
-  - Diskplass-sjekk  
-  - Grep etter bruker  
-  - Vise egen info  
-  - NMAP TCP SYN-scan  
-  - Vise varsler (Zenity)  
-  - Avslutte root-senteret  
+The project is built in a modular structure: the main script (`root-operation-center`) serves as the core controller.
 
 ---
 
-## 🛠️ Teknologi
-- **Bash** som hovedspråk  
-- Modulær struktur med eksterne script (eks. `./add_root`, `./delete-user`)  
-- Bruk av `case` for menyvalg  
-- Enkel **innloggingsmekanisme** med brukernavn/passord fra tekstfil  
-- Enkel "2FA-effekt" gjennom ekstra verifisering (`verify_root_check`)  
+## Features
+- **Root check**: The script exits if not run as root (via `id -u`)  
+- **Login system**: Simulated admin login with username and password stored in `admin_credentials.txt`  
+- **Menu-based interface** (using `case`) with options such as:
+  - Add user  
+  - Delete user  
+  - Edit root-admin user  
+  - Verify root-admin validity  
+  - System backup  
+  - Show all users  
+  - Disk space check  
+  - Grep for a specific user  
+  - Display user info  
+  - NMAP TCP SYN scan  
+  - Show notifications (Zenity)  
+  - Exit the root center  
+
+---
+
+## Technology
+- **Bash** as the main scripting language  
+- Modular structure using external scripts (e.g., `./add_root`, `./delete-user`)  
+- Use of `case` for handling menu selections  
+- Simple **login mechanism** using a text file with username and password  
+- Basic "2FA-like" verification through an additional check (`verify_root_check`)  
 
 ---
