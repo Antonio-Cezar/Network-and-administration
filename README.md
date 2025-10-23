@@ -33,3 +33,6 @@ The project is built in a modular structure: the main script (`root-operation-ce
 - Basic "2FA-like" verification through an additional check (`verify_root_check`)  
 
 ---
+
+### Example
+![Demonstration of how it works](images/)
